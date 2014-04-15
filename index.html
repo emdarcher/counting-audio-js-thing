@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 
 <html>
-<head><title>Title</title></head>
+<head><title>Title</title>
+<style>
+
+#progressBar { border:1px solid #aaa; 
+color:#fff; 
+width:295px; 
+height:20px;
+} 
+#progress { background-color:#ff0000; 
+height:20px; 
+display:inline-block; 
+}
+
+</style>
+
+
+</head>
 
 <body>
 <h3>Testing Audio counter thing</h3>
@@ -10,21 +26,34 @@
 	<source src="04-diffused_beats-49_percent.ogg">
 </audio>
 
+
+
 <script type="text/javascript">
 document.getElementById("mySound").load();
+audio.addEventListener("timeupdate", updateProgress, false);
 
 var audio = document.getElementById("mySound");
-var dur = audio.duration;
-audio.progress;
+//var dur = audio.duration;
+//audio.progress;
 
 document.getElementById("mySound").play();
 
+function updateProgress() {
+ var progress = document.getElementById("progress");
+ var value = 0;
+ if (audio.currentTime > 0) {
+ value = Math.floor((100 / audio.duration) * audio.currentTime);
+ }
+ progress.style.width = value + "%";
+}
+
+//audio.addEventListener("timeupdate", updateProgress, false);
 //var dur = audio.duration;
-while (audo.currentTime < dur){
+/*while (audo.currentTime < dur){
 
 document.write(audio.currentTime);
 
-}
+}*/
 //document.getElementById("mySound").load();
 //document.getElementById("mySound").play();
 //document.write("duration: " + document.getElementById("mySound").duration);
@@ -36,6 +65,9 @@ document.write(audio.currentTime);
 
 }
 </script>
+
+<div id="progressBar"><span id="progress"></span></div>
+
 
 </body>
 </html>
