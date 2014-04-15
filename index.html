@@ -22,21 +22,30 @@ display:inline-block;
 <body>
 <h3>Testing Audio counter thing</h3>
 
-<audio preload="auto" id="mySound">
-	<source src="04-diffused_beats-49_percent.ogg">
+<audio  id="mySound" >
+	<source src="04-diffused_beats-49_percent.ogg" type='audio/ogg; codecs="vorbis"'>
 </audio>
 
 
+<div id="progressBar"><span id="progress"></span></div>
 
 <script type="text/javascript">
-document.getElementById("mySound").load();
-audio.addEventListener("timeupdate", updateProgress, false);
+
+//document.getElementById("mySound").load();
+//audio.addEventListener("timeupdate", updateProgress, false);
 
 var audio = document.getElementById("mySound");
-//var dur = audio.duration;
-//audio.progress;
+//var audio = new Audio();
 
-document.getElementById("mySound").play();
+var dur = audio.duration;
+//audio.progress;
+audio.controls = false;
+
+audio.play();
+
+audio.addEventListener("timeupdate", updateProgress, false);
+
+//document.getElementById("mySound").play();
 
 function updateProgress() {
  var progress = document.getElementById("progress");
@@ -61,12 +70,13 @@ document.write(audio.currentTime);
 //while(document.getElementById("mySound").currentTime < document.getElementById("mySound").duration){
 //var curtime = document.getElementById("mySound").currentTime();
 
-//document.write(document.getElementById("mySound").currentTime);
+//document.write("<p>" + document.getElementById("mySound").duration + "</p>");
+//document.print("hello");
+//}
 
-}
 </script>
 
-<div id="progressBar"><span id="progress"></span></div>
+<!--<div id="progressBar"><span id="progress"></span></div>-->
 
 
 </body>
