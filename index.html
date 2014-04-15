@@ -11,7 +11,8 @@ height:20px;
 } 
 #progress { background-color:#ff0000; 
 height:20px; 
-display:inline-block; 
+display:inline-block;
+color:#000; 
 }
 
 </style>
@@ -26,8 +27,9 @@ display:inline-block;
 	<source src="04-diffused_beats-49_percent.ogg" type='audio/ogg; codecs="vorbis"'>
 </audio>
 
+<div id="counter"></div>
 
-<div id="progressBar"><span id="progress"></span></div>
+<div id="progressBar"><span id="progress"><!--<h4 id="percent"></h4>--></span></div>
 
 <script type="text/javascript">
 
@@ -52,10 +54,23 @@ function updateProgress() {
  var value = 0;
  if (audio.currentTime > 0) {
  value = Math.floor((100 / audio.duration) * audio.currentTime);
+	
  }
  progress.style.width = value + "%";
+	progress.innerHTML = value + "%";
+ //var percent = document.getElementById("percent");
+	//percent = value;
+
 }
 
+function updateCount(){
+	var counter = document.getElementById("counter");
+	var time = 0;
+	if (audio.currentTime > 0){
+	
+	}
+	
+}
 //audio.addEventListener("timeupdate", updateProgress, false);
 //var dur = audio.duration;
 /*while (audo.currentTime < dur){
