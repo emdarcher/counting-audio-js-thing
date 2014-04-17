@@ -33,9 +33,6 @@ color:#000;
 
 <script type="text/javascript">
 
-//document.getElementById("mySound").load();
-//audio.addEventListener("timeupdate", updateProgress, false);
-
 var audio = document.getElementById("mySound");
 //var audio = new Audio();
 
@@ -67,31 +64,26 @@ function updateProgress() {
 function updateCount(){
 	var counter = document.getElementById("counter");
 	var timeleft = 0;
+	var timeleftmin = 0;
+	var timeleftsec = 0;
+	var cur = 0;
+	var curmin = 0;
+	var cursec = 0;
 	if (audio.currentTime > 0){
-		timeleft = (audio.duration - audio.currentTime); 
+		timeleft = (audio.duration - audio.currentTime);
+		cur = audio.currentTime; 
+	}
+
+	if ((cur / 60) >= 1){
+	
+		curmin = cur
+
 	}
 	
-	counter.innerHTML = (audio.currentTime / 60) + "\t" + (timeleft / 60) + "\tTotal Min: " + (audio.duration / 60);
+	//counter.innerHTML = (audio.currentTime / 60) + "\t" + (timeleft / 60) + "\tTotal Min: " + (audio.duration / 60);
 
 	
 }
-//audio.addEventListener("timeupdate", updateProgress, false);
-//var dur = audio.duration;
-/*while (audo.currentTime < dur){
-
-document.write(audio.currentTime);
-
-}*/
-//document.getElementById("mySound").load();
-//document.getElementById("mySound").play();
-//document.write("duration: " + document.getElementById("mySound").duration);
-
-//while(document.getElementById("mySound").currentTime < document.getElementById("mySound").duration){
-//var curtime = document.getElementById("mySound").currentTime();
-
-//document.write("<p>" + document.getElementById("mySound").duration + "</p>");
-//document.print("hello");
-//}
 
 </script>
 
