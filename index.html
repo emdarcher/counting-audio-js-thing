@@ -39,13 +39,14 @@ color:#000;
 var audio = document.getElementById("mySound");
 //var audio = new Audio();
 
-var dur = audio.duration;
+//var dur = audio.duration;
 //audio.progress;
 audio.controls = false;
 
 audio.play();
 
 audio.addEventListener("timeupdate", updateProgress, false);
+audio.addEventListener("timeupdate", updateCount, false);
 
 //document.getElementById("mySound").play();
 
@@ -65,10 +66,13 @@ function updateProgress() {
 
 function updateCount(){
 	var counter = document.getElementById("counter");
-	var time = 0;
+	var timeleft = 0;
 	if (audio.currentTime > 0){
-	
+		timeleft = (audio.duration - audio.currentTime); 
 	}
+	
+	counter.innerHTML = (audio.currentTime / 60) + "\t" + (timeleft / 60) + "\tTotal Min: " + (audio.duration / 60);
+
 	
 }
 //audio.addEventListener("timeupdate", updateProgress, false);
