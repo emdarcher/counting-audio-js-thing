@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 
+<!--
+
+
+Originally made by Ethan Durrant for a prototype program for
+showing time left in a audio file that is played for an
+AP Language Test.
+
+http://github.com/emdarcher
+
+
+
+-->
+
 <html>
 <head><title>Title</title>
 <style>
@@ -61,6 +74,33 @@ function updateProgress() {
 
 }
 
+
+/* a function to parse the minutes and seconds for this link:
+http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-with-format-hhmmss
+
+*/
+
+// EDITED TO USE NUMBER
+
+Number.prototype.toHHMMSS = function () {
+    var sec_num = Math.floor(this); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+':'+minutes+':'+seconds;
+    return time;
+}
+
+
+/*----------------------------------------------------*/
+
+
+
+
 function updateCount(){
 	var counter = document.getElementById("counter");
 	var timeleft = 0;
@@ -74,16 +114,52 @@ function updateCount(){
 		cur = audio.currentTime; 
 	}
 
+	
+	var outputc = cur.toHHMMSS();
+	
+	var outputd = (audio.duration).toHHMMSS();
+	counter.innerHTML = outputc + "\t" + outputd;
+	/*
 	if ((cur / 60) >= 1){
 	
 		curmin = cur
 
 	}
-	
+	*/
 	//counter.innerHTML = (audio.currentTime / 60) + "\t" + (timeleft / 60) + "\tTotal Min: " + (audio.duration / 60);
-
+	
+	
 	
 }
+
+
+/* a function to parse the minutes and seconds for this link:
+http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-with-format-hhmmss
+
+*/
+
+	// ORIGINAL UNEDITIED FUNCTION THAT TAKES STRING
+
+/*
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+':'+minutes+':'+seconds;
+    return time;
+}*/
+
+
+/*----------------------------------------------------*/
+
+
+	
+
 
 </script>
 
