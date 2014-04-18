@@ -2,19 +2,20 @@
 
 <!--
 
-
 Originally made by Ethan Durrant for a prototype program for
 showing time left in a audio file that is played for an
 AP Language Test.
 
+There is no pause or stop ability besides closing the browser
+window, this is because during the AP test the students 
+should not have the ability to pause the playback.
+
 http://github.com/emdarcher
-
-
 
 -->
 
 <html>
-<head><title>Title</title>
+<head><title>Testing Audio Counter Thing</title>
 <style>
 
 #progressBar { border:1px solid #aaa; 
@@ -37,6 +38,9 @@ color:#000;
 <h3>Testing Audio counter thing</h3>
 
 <audio  id="mySound" >
+
+	<!-- make sure to change the location to match the audio file that you are using -->	
+
 	<source src="04-diffused_beats-49_percent.ogg" type='audio/ogg; codecs="vorbis"'>
 </audio>
 
@@ -118,7 +122,7 @@ function updateCount(){
 	var outputc = cur.toHHMMSS();
 	
 	var outputd = (audio.duration).toHHMMSS();
-	counter.innerHTML = outputc + "\t" + outputd;
+	counter.innerHTML = "Current time: " + outputc + "\t" + "Total time: " + outputd;
 	/*
 	if ((cur / 60) >= 1){
 	
@@ -158,13 +162,7 @@ String.prototype.toHHMMSS = function () {
 /*----------------------------------------------------*/
 
 
-	
-
-
 </script>
-
-<!--<div id="progressBar"><span id="progress"></span></div>-->
-
 
 </body>
 </html>
