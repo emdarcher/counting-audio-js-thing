@@ -18,6 +18,15 @@ http://github.com/emdarcher
 <head><title>DO NOT CLOSE WINDOW OR TAB!</title>
 <style>
 
+#counter {
+text-align: center;
+}
+
+h3 {
+text-align: center;
+}
+
+/*
 #progressBar { border:1px solid #aaa; 
 color:#fff; 
 width:295px; 
@@ -27,7 +36,7 @@ height:20px;
 height:20px; 
 display:inline-block;
 color:#000; 
-}
+}*/
 
 </style>
 
@@ -46,7 +55,7 @@ color:#000;
 
 <div id="counter"></div>
 
-<div id="progressBar"><span id="progress"><!--<h4 id="percent"></h4>--></span></div>
+<!--<div id="progressBar"><span id="progress"></span></div> -->
 
 <script type="text/javascript">
 
@@ -121,9 +130,12 @@ function updateCount(){
 
 	
 	var outputc = cur.toHHMMSS();
-	
+	var outputl = timeleft.toHHMMSS();
+		
 	var outputd = (audio.duration).toHHMMSS();
-	counter.innerHTML = "Current time: " + outputc + "\t" + "Total time: " + outputd;
+	var fullout = "Current time: " + outputc + "\t" + "Time left: " + outputl + "\t" + "Total time: " + outputd;
+	//counter.innerHTML = "Current time: " + outputc + "\t" + "Time left: " + outputl + "\t" + "Total time: " + outputd;
+	counter.innerHTML = fullout;
 	/*
 	if ((cur / 60) >= 1){
 	
