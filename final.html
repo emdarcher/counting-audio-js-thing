@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<!--
+
+Originally made by Ethan Durrant for a prototype program for
+showing time left in a audio file that is played for an
+AP Language Test.
+
+There is no pause or stop ability besides closing the browser
+window, this is because during the AP test the students 
+should not have the ability to pause the playback.
+
+http://github.com/emdarcher
+
+-->
+
+<html>
+<head><title>DO NOT CLOSE WINDOW OR TAB!</title>
+<style>
+
+#counter {
+text-align: center;
+}
+
+h3 {
+text-align: center;
+}
+
+</style>
+
+</head>
+
+<body>
+<h3>DO NOT CLOSE WINDOW OR TAB!</h3>
+
+<audio  id="mySound" >
+
+	<!-- make sure to change the location to match the audio file that you are using -->	
+
+	<!--<source src="04-diffused_beats-49_percent.ogg" type='audio/ogg; codecs="vorbis"'>-->
+	
+</audio>
+
+<div id="counter"></div>
+
+<script type="text/javascript">
+
+var audio = document.getElementById("mySound");
+
+audio.controls = false;
+
+audio.play();
+
+
+audio.addEventListener("timeupdate", updateCount, false);
+
+
+/* a function to parse the minutes and seconds for this link:
+http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-with-format-hhmmss
+
+*/
+
+// EDITED TO USE NUMBER
+
+Number.prototype.toHHMMSS = function () {
+    var sec_num = Math.floor(this); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+':'+minutes+':'+seconds;
+    return time;
+}
+
+
+/*----------------------------------------------------*/
+
+
+
+
+function updateCount(){
+	var counter = document.getElementById("counter");
+	var timeleft = 0;
+	var timeleftmin = 0;
+	var timeleftsec = 0;
+	var cur = 0;
+	var curmin = 0;
+	var cursec = 0;
+	if (audio.currentTime > 0){
+		timeleft = (audio.duration - audio.currentTime);
+		cur = audio.currentTime; 
+	}
+
+	
+	var outputc = cur.toHHMMSS();
+	var outputl = timeleft.toHHMMSS();
+		
+	var outputd = (audio.duration).toHHMMSS();
+	var fullout = "Current time: " + outputc + "\t" + "Time left: " + outputl + "\t" + "Total time: " + outputd;
+	
+	counter.innerHTML = fullout;
+	
+}
+
+</script>
+
+</body>
+</html>
